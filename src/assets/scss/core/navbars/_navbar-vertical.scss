@@ -50,7 +50,7 @@
             &:before {
                 content: '';
                 display: block;
-                margin: $navbar-padding-y (-$navbar-padding-x);
+                margin: 10px; //$navbar-padding-y (-$navbar-padding-x);
             }
         }
     }

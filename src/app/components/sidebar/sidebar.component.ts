@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { RouteInfo } from 'src/app/models/routeInfo';
+import { FilterPipePipe } from 'src/app/pipes/filter-pipe.pipe';
 
-declare interface RouteInfo {
-    path: string;
-    title: string;
-    icon: string;
-    class: string;
-}
+
 export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: 'Dashboard',  icon: 'ni-tv-2 text-primary', class: '' },
     { path: '/icons', title: 'Icons',  icon:'ni-planet text-blue', class: '' },
@@ -26,6 +23,7 @@ export class SidebarComponent implements OnInit {
   public focus;
   public menuItems: any[];
   public isCollapsed = true;
+  public filterText="";
 
   constructor(private router: Router) { }
 

@@ -84,10 +84,10 @@
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-search"></i></span>
             </div>
-            <input class="form-control" placeholder="Menüde ara.." type="text" (focus)="focus = true" (blur)="focus = false">
+            <input class="form-control" id="filterText" placeholder="Menüde ara.." type="text" (focus)="focus = true" (blur)="focus = false" ngModel="filterText" >
           </div>
         </div>
-        <li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
+        <li *ngFor="let menuItem of menuItems " class="{{menuItem.class}} nav-item">
           <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link">
             <i class="ni {{menuItem.icon}}"></i>
             {{menuItem.title}}
@@ -101,17 +101,17 @@
       <!-- Navigation -->
       <ul class="navbar-nav mb-md-3">
         <li class="nav-item">
-          <a class="nav-link" href="google.com">
+          <a class="nav-link" href="www.google.com">
             <i class="ni ni-spaceship"></i> Getting started
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard-angular/documentation/colors">
+          <a class="nav-link" href="www.google.com">
             <i class="ni ni-palette"></i> Foundation
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard-angular/documentation/alerts">
+          <a class="nav-link" href="www.google.com">
             <i class="ni ni-ui-04"></i> Components
           </a>
         </li>

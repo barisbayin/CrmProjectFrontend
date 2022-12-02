@@ -12,7 +12,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-import { FilterPipePipe } from './pipes/filter-pipe.pipe';
 
 
 @NgModule({
@@ -29,7 +28,6 @@ import { FilterPipePipe } from './pipes/filter-pipe.pipe';
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
-    FilterPipePipe
   ],
   providers: [],
   bootstrap: [AppComponent]

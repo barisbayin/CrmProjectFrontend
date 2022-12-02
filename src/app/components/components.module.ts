@@ -5,22 +5,29 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FilterPipe } from '../pipes/filter-pipe.pipe';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    NgbModule
+    NgbModule,
+    FormsModule//[(ngModel)] yapısını kullanabilmek için FormsModule eklemek zorundasın
+
   ],
   declarations: [
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    FilterPipe
   ],
   exports: [
     FooterComponent,
     NavbarComponent,
     SidebarComponent
+
   ]
 })
 export class ComponentsModule { }

@@ -80,7 +80,7 @@
       <!-- Navigation -->
       <ul class="navbar-nav">
         <div class="form-group mb-0" [ngClass]="{ 'focused': focus === true }"
-          style="padding-left: 16px; padding-right: 16px;">
+          style="padding-left: 16px; padding-right: 16px; padding-bottom: 8px;">
           <div class="input-group input-group-alternative">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-search"></i></span>
@@ -90,7 +90,7 @@
           </div>
         </div>
         <li *ngFor="let menuItem of menuItems | filterPipe:filterText " class="{{menuItem.class}} nav-item">
-          <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link">
+          <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link" style="height: 30px;">
             <i class="ni {{menuItem.icon}}"></i>
             {{menuItem.title}}
           </a>

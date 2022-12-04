@@ -6,7 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FilterPipe } from '../pipes/filter-pipe.pipe';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,7 +14,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     RouterModule,
     NgbModule,
-    FormsModule//[(ngModel)] yapısını kullanabilmek için FormsModule eklemek zorundasın
+    FormsModule,//[(ngModel)] yapısını kullanabilmek için FormsModule eklemek zorundasın
+    ReactiveFormsModule
 
   ],
   declarations: [

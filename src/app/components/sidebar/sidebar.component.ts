@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouteInfo } from 'src/app/models/routeInfo';
-import { FilterPipe } from 'src/app/pipes/filter-pipe.pipe';
 
 
 export const ROUTES: RouteInfo[] = [

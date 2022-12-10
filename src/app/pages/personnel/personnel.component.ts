@@ -7,4 +7,17 @@ import { Component } from '@angular/core';
 })
 export class PersonnelComponent {
 
+  indir() {
+    // Burada indirme işlemlerini gerçekleştirin
+    // Örneğin:
+    console.log('Resim indiriliyor...');
+  }
+  
+  yukle() {
+    // Burada yükleme işlemlerini gerçekleştirin
+    // Örneğin:
+    console.log('Resim yükleniyor...');
+  }
+
+  
 }

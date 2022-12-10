@@ -30,8 +30,8 @@ import { PersonnelComponent } from './pages/personnel/personnel.component';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent,
-    PersonnelComponent,
+    AuthLayoutComponent
+   
 
   ],
   providers: [],

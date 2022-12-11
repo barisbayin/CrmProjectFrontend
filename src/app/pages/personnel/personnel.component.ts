@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Personnel } from 'src/app/models/personnel';
+import { PersonnelService } from 'src/app/services/personnel.service';
+
+
 
 @Component({
   selector: 'app-personnel',
@@ -7,17 +12,99 @@ import { Component } from '@angular/core';
 })
 export class PersonnelComponent {
 
-  indir() {
-    // Burada indirme işlemlerini gerçekleştirin
-    // Örneğin:
-    console.log('Resim indiriliyor...');
+  personnelAddForm: FormGroup;
+  personnelList: Personnel[]=[];
+
+  public personnelFields = [
+    { name: "name", label: "İsim", type: "text" },
+    { name: "lastName", label: "Soyisim", type: "text" },
+    { name: "birthDate", label: "Doğum Tarihi", type: "date" },
+    { name: "identityNumber", label: "Kimlik Numarası", type: "text" },
+    { name: "phoneNumber", label: "Telefon Numarası", type: "text" },
+    { name: "email", label: "E-posta", type: "email" },
+    { name: "departmentName", label: "Departman", type: "select" },
+    { name: "fullAddress", label: "Tam Adres", type: "text" },
+    { name: "addressLine", label: "Adres Satırı", type: "text" },
+    { name: "countryName", label: "Ülke", type: "select" },
+    { name: "cityName", label: "İl", type: "select" },
+    { name: "countyName", label: "İlçe", type: "select" },
+    { name: "neighbourhoodName", label: "Mahalle", type: "select" },
+    { name: "zipCode", label: "Posta Kodu", type: "text" },
+    { name: "genderInformation", label: "Cinsiyet", type: "select" }
+
+  ]
+
+  constructor(private fb: FormBuilder, private personnelService: PersonnelService) { }
+
+
+  ngOnInit() {
+
+    this.getPagebleProductList();
+
+    this.personnelAddForm = this.fb.group({
+      name: ["", Validators.required],
+      lastName: ["", Validators.required],
+      birthDate: ["", Validators.required],
+      identityNumber: ["", Validators.required],
+      phoneNumber: ["", Validators.required],
+      email: ["", Validators.required],
+      fullAddress: ["", Validators.required],
+      addressLine: ["", Validators.required],
+      countryName: ["", Validators.required],
+      cityName: ["", Validators.required],
+      countyName: ["", Validators.required],
+      neighbourhoodName: ["", Validators.required],
+      zipCode: ["", Validators.required],
+      genderInformation: ["", Validators.required],
+      department: ["", Validators.required]
+    });
   }
-  
-  yukle() {
+
+
+  getPagebleProductList() {
+    console.log('Metod çalıştı...')
+    this.personnelService.getPageblePersonnelList().subscribe(response => {
+      this.personnelList = response.items;
+
+
+      console.log(response.items)
+      console.log('Metod bitti...')
+    })
+
+  }
+
+  downloadImage() {
+    const imageUrl = 'http://localhost:4200/assets/img/personnel-photos/default_photo.jpg';
+
+    // İndirme işlemini başlatın
+    const link = document.createElement('a');
+    link.href = imageUrl;
+    link.download = 'your-image.png';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  uploadImage(): void {
     // Burada yükleme işlemlerini gerçekleştirin
     // Örneğin:
     console.log('Resim yükleniyor...');
   }
 
-  
+  savePersonnel(): void {
+
+    console.log('Personel kaydediliyor...');
+  }
+
+  deletePersonnel(): void {
+
+    console.log('Personel siliniyor...');
+  }
+
+  addPersonnel(): void {
+    console.log('Personeli ekleniyor...');
+
+  }
+
+
 }

@@ -8,51 +8,86 @@
         margin: 10px;
     }
 </style>
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
 
-<div class="container-fluid" style="margin: 20px, width= auto" >
-    <div class="row">
+    <div class="container-fluid" style="margin: 20px, width= auto">
+        <div class="row">
 
-    </div>
-    <div class="row">
-        <div class="col-8">
-            <!-- Listeleme alanı burada -->
-            <ul class="list-group">
-                <li class="list-group-item">Personel 1</li>
-                <li class="list-group-item">Personel 2</li>
-                <li class="list-group-item">Personel 3</li>
-                ...
-            </ul>
         </div>
-        <div class="col-4">
+    </div>
+</div>
+<div class="container-fluid mt--7" style="margin: 20px, width= auto">
+    <div class="row">
+        <div class="col-9">
+            <!-- Listeleme alanı burada -->
+
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                    <thead>
+                        <tr>
+                            <th>Ad</th>
+                            <th>Soyad</th>
+                            <th>Departman Adı</th>
+                            <th>Doğum Tarihi</th>
+                            <th>TC Kimlik No</th>
+                            <th>Telefon No</th>
+                            <th>E-posta</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let personnel of personnelList">
+                            <td>{{ personnel.name }}</td>
+                            <td>{{ personnel.lastName }}</td>
+                            <td>{{ personnel.department }}</td>
+                            <td>{{ personnel.birthDay | date }}</td>
+                            <td>{{ personnel.identityNumber }}</td>
+                            <td>{{ personnel.phoneNumber }}</td>
+                            <td>{{ personnel.email }}</td>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-3">
+
+            <div class="d-flex justify-content-center align-items-center">
+                <!-- Resim kutusu burada -->
+                <img src="../assets/img/personnel-photos/default_photo.jpg" width="150" height="150"
+                    class="mw-100 mh-100 rounded-circle" />
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <!-- İndir ve yükle butonları burada -->
+                <button type="button" class="btn btn-secondary" style="flex: 1; margin: 10px" (click)="downloadImage()">
+                    <i class="fa fa-download"></i> Fotoğrafı İndir
+                </button>
+                <button type="button" class="btn btn-primary" style="flex: 1; margin: 10px" (click)="uploadImage()">
+                    <i class="fa fa-upload"></i> Fotoğraf Yükle
+                </button>
+            </div>
             <!-- Form grubu burada -->
-            <form>
-                <div class="form-group" style="margin-bottom: 0px">
-                    <div class="col-md-4 mx-auto">
-                        <!-- Resim kutusu burada -->
-                        <img class="rounded-circle shadow-4-strong img-thumbnail" alt="avatar2"
-                            src="../assets/img/personnel-photos/default.jpg" />
-                    </div>
+            <form [formGroup]="personnelAddForm" class="form-group">
+                <div *ngFor="let field of personnelFields" class="form-group" class="form-group mb-2">
+                    <label>{{field.label}}:</label>
+                    <input *ngIf="field.type !== 'select'" [formControlName]="field.name" [type]="field.type"
+                        class="form-control form-control-sm">
+                    <select *ngIf="field.type === 'select'" [formControlName]="field.name"
+                        class="form-control form-control-sm">
+                        <!-- Burada, seçilebilir seçeneklerin bir listesi olacak -->
+                    </select>
                 </div>
-                <div class="button-container">
-                    <!-- İndir ve yükle butonları burada -->
-                    <button type="button" class="btn btn-secondary custom" (click)="indir()">İndir</button>
-                    <button type="button" class="btn btn-primary custom" (click)="yukle()">Yükle</button>
+                <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-primary" style="flex: 1; margin: 10px;"
+                        (click)="addPersonnel()">
+                        <i class="fa fa-plus"></i> Yeni
+                    </button>
+                    <button type="button" class="btn btn-danger" style="flex: 1; margin: 10px;"
+                        (click)="deletePersonnel()">
+                        <i class="fa fa-trash"></i> Sil
+                    </button>
+                    <button type="button" class="btn btn-success" style="margin: 10px;" (click)="savePersonnel()">
+                        <i class="fa fa-save"></i> Kaydet
+                    </button>
                 </div>
-                <div class="pr-3 pl-3" >
-                    <div class="form-group">
-                        <label for="ad">Ad</label>
-                        <input type="text" class="form-control" id="ad" />
-                    </div>
-                    <div class="form-group">
-                        <label for="soyad">Soyad</label>
-                        <input type="text" class="form-control" id="soyad" />
-                    </div>
-                    <div class="form-group">
-                        <label for="dogumTarihi">Doğum Tarihi</label>
-                        <input type="date" class="form-control" id="dogumTarihi" />
-                    </div>
-                </div>
-                
             </form>
         </div>
     </div>

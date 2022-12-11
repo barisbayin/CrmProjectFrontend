@@ -12,7 +12,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-import { PersonnelComponent } from './pages/personnel/personnel.component';
 
 
 
@@ -30,9 +29,7 @@ import { PersonnelComponent } from './pages/personnel/personnel.component';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
-   
-
+    AuthLayoutComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

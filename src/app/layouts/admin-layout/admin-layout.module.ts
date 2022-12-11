@@ -13,6 +13,7 @@ import { UserProfileComponent } from '../../pages/user-profile/user-profile.comp
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PersonnelComponent } from '../../pages/personnel/personnel.component';
+
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -22,7 +23,8 @@ import { PersonnelComponent } from '../../pages/personnel/personnel.component';
     FormsModule,
     HttpClientModule,
     NgbModule,
-    ClipboardModule
+    ClipboardModule,
+    ReactiveFormsModule
   ],
   declarations: [
     DashboardComponent,

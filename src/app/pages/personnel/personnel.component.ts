@@ -13,7 +13,12 @@ import { PersonnelService } from 'src/app/services/personnel.service';
 export class PersonnelComponent {
 
   personnelAddForm: FormGroup;
-  personnelList: Personnel[]=[];
+  personnelList: Personnel[] = [];
+  query: string;
+  filterText:string;
+  focus: boolean;
+  sortOrder: string;
+  sortBy = 'asc';
 
   public personnelFields = [
     { name: "name", label: "İsim", type: "text" },
@@ -85,6 +90,9 @@ export class PersonnelComponent {
     document.body.removeChild(link);
   }
 
+  downloadExcel(){
+    
+  }
   uploadImage(): void {
     // Burada yükleme işlemlerini gerçekleştirin
     // Örneğin:
@@ -104,6 +112,17 @@ export class PersonnelComponent {
   addPersonnel(): void {
     console.log('Personeli ekleniyor...');
 
+  }
+
+  sort(sortBy: string) {
+    // Eğer aynı sütun üzerinde tıklanıldıysa sıralama yönünü değiştirin
+    if (sortBy === this.sortBy) {
+      this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+    } else {
+      // Eğer farklı bir sütun üzerinde tıklanıldıysa sıralama yönünü "asc" olarak ayarlayın
+      this.sortBy = sortBy;
+      this.sortOrder = 'asc';
+    }
   }
 
 

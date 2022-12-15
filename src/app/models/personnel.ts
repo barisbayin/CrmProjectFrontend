@@ -1,4 +1,5 @@
 export class Personnel {
+    id:number;
     name: string;
     lastName: string;
     birthDay: Date;
@@ -15,5 +16,6 @@ export class Personnel {
     genderInformation: string;
     imagePath: string
     departmentName: string;
+    status:string;
 
 }

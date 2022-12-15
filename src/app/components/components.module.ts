@@ -5,8 +5,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FilterPipe } from '../pipes/filter-pipe.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppCommonModule } from '../app.common.module';
+
 
 
 @NgModule({
@@ -15,14 +16,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     NgbModule,
     FormsModule,//[(ngModel)] yapısını kullanabilmek için FormsModule eklemek zorundasın
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppCommonModule
 
   ],
   declarations: [
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
-    FilterPipe
+ 
+
   ],
   exports: [
     FooterComponent,

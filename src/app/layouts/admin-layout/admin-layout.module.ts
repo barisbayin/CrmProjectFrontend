@@ -13,6 +13,8 @@ import { UserProfileComponent } from '../../pages/user-profile/user-profile.comp
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PersonnelComponent } from '../../pages/personnel/personnel.component';
+import { AppCommonModule } from 'src/app/app.common.module';
+
 
 // import { ToastrModule } from 'ngx-toastr';
 
@@ -24,7 +26,8 @@ import { PersonnelComponent } from '../../pages/personnel/personnel.component';
     HttpClientModule,
     NgbModule,
     ClipboardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppCommonModule
   ],
   declarations: [
     DashboardComponent,
@@ -33,6 +36,8 @@ import { PersonnelComponent } from '../../pages/personnel/personnel.component';
     IconsComponent,
     MapsComponent,
     PersonnelComponent
+    
+
   ]
 })
 

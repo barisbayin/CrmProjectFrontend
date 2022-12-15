@@ -19,12 +19,52 @@
 <div class="container-fluid mt--7" style="margin: 20px, width= auto">
     <div class="row">
         <div class="col-9">
-            <!-- Listeleme alanı burada -->
+            <!-- Liste üzeri alan -->
+            <div class="row" class="card-header border-0">
 
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group mb-0" [ngClass]="{ 'focused': focus === true }"
+                            style="padding-left: 16px; padding-right: 16px; padding-bottom: 8px;">
+                            <div class="input-group input-group-alternative">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                </div>
+                                <input class="form-control" id="filterText" placeholder="Listede ara.." type="text"
+                                    (focus)="focus = true" (blur)="focus = false" [(ngModel)]="filterText">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-secondary">25</button>
+                            <button type="button" class="btn btn-secondary">50</button>
+                            <button type="button" class="btn btn-secondary">100</button>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <button type="button"  class="btn btn-primary" (click)="downloadExcel()">
+                            
+                            <i class="fa fa-file-excel-o" aria-hidden="true"></i>İndir
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Listeleme alanı burada -->
             <div class="table-responsive">
                 <table class="table align-items-center table-flush" style="background-color:#fff">
-                    <thead style="background-color: #e9ecef;">
+                    <thead class="thead-light">
                         <tr>
+                            <th (click)="sort('No')">
+                                No
+                                <i *ngIf="sortBy == 'No' && sortOrder == 'asc'" class="fa fa-sort-asc"></i>
+                                <i *ngIf="sortBy == 'No' && sortOrder == 'desc'" class="fa fa-sort-desc"></i>
+                            </th>
                             <th>Ad</th>
                             <th>Soyad</th>
                             <th>Departman Adı</th>
@@ -32,17 +72,27 @@
                             <th>TC Kimlik No</th>
                             <th>Telefon No</th>
                             <th>E-posta</th>
+                            <th>Durum</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let personnel of personnelList">
+                        <tr *ngFor="let personnel of personnelList | sort:sortBy:sortOrder | filterPersonnel:filterText">
+                            <td>{{personnel.id}}</td>
                             <td>{{ personnel.name }}</td>
                             <td>{{ personnel.lastName }}</td>
-                            <td>{{ personnel.department }}</td>
+                            <td>{{ personnel.departmentName }}</td>
                             <td>{{ personnel.birthDay | date }}</td>
                             <td>{{ personnel.identityNumber }}</td>
                             <td>{{ personnel.phoneNumber }}</td>
                             <td>{{ personnel.email }}</td>
+                            <td *ngIf="personnel.status == true; else redCross">
+                                <span class="badge badge-success">&#10004;</span>
+                            </td>
+                            <ng-template #redCross>
+                                <td>
+                                    <span class="badge badge-danger">&#x2718;</span>
+                                </td>
+                            </ng-template>
                     </tbody>
                 </table>
             </div>
@@ -76,15 +126,15 @@
                     </select>
                 </div>
                 <div class="d-flex justify-content-between">
-                    <button type="button" class="btn btn-primary" style="flex: 1; margin: 10px;"
+                    <button type="button" class="btn btn-primary" style="flex: 1; margin: 8px;"
                         (click)="addPersonnel()">
                         <i class="fa fa-plus"></i> Yeni
                     </button>
-                    <button type="button" class="btn btn-danger" style="flex: 1; margin: 10px;"
+                    <button type="button" class="btn btn-danger" style="flex: 1; margin: 8px;"
                         (click)="deletePersonnel()">
                         <i class="fa fa-trash"></i> Sil
                     </button>
-                    <button type="button" class="btn btn-success" style="margin: 10px;" (click)="savePersonnel()">
+                    <button type="button" class="btn btn-success" style="flex: 1; margin: 8px;" (click)="savePersonnel()">
                         <i class="fa fa-save"></i> Kaydet
                     </button>
                 </div>

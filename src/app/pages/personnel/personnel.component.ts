@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Personnel } from 'src/app/models/personnel';
 import { PersonnelService } from 'src/app/services/personnel.service';
-
+import * as FileSaver from 'file-saver';
+import * as XLSX from 'xlsx';
 
 
 @Component({
@@ -90,8 +91,14 @@ export class PersonnelComponent {
     document.body.removeChild(link);
   }
 
-  downloadExcel(){
-    
+  downloadExcel() {
+    // Veri kaynağınızı XLSX formatına dönüştürün
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.personnelList);
+    const wb: XLSX.WorkBook = { Sheets: { 'data': ws }, SheetNames: ['data'] };
+    const excelBuffer: any = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+    // İndirme için bir dosya oluşturun
+    const data = new Blob([excelBuffer], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8'});
+    FileSaver.saveAs(data, 'veriler.xlsx');
   }
   uploadImage(): void {
     // Burada yükleme işlemlerini gerçekleştirin
